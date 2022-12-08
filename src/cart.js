@@ -117,3 +117,15 @@ let decrement = (id) => {
     generateCartItems();
     localStorage.setItem("data", JSON.stringify(basket));
   };
+
+
+/**
+ * ! To update the digits of picked items on each item card
+ */
+
+let update = (id) => {
+    let search = basket.find((x) => x.id === id);
+    document.getElementById(id).innerHTML = search.item;
+    calculation();
+    TotalAmount();
+  };
