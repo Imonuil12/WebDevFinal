@@ -129,3 +129,17 @@ let update = (id) => {
     calculation();
     TotalAmount();
   };
+
+  /**
+ * ! Used to remove 1 selected product card from basket
+ * ! using the X [cross] button
+ */
+
+let removeItem = (id) => {
+    let selectedItem = id;
+    basket = basket.filter((x) => x.id !== selectedItem.id);
+    calculation();
+    generateCartItems();
+    TotalAmount();
+    localStorage.setItem("data", JSON.stringify(basket));
+  };
