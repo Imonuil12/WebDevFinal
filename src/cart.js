@@ -8,3 +8,14 @@ let label = document.getElementById("label");
  */
 
  let basket = JSON.parse(localStorage.getItem("data")) || [];
+
+ /**
+ * ! To calculate total amount of selected Items
+ */
+
+let calculation = () => {
+    let cartIcon = document.getElementById("cartAmount");
+    cartIcon.innerHTML = basket.map((x) => x.item).reduce((x, y) => x + y, 0);
+  };
+  
+  calculation();
