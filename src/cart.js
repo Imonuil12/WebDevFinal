@@ -143,3 +143,40 @@ let removeItem = (id) => {
     TotalAmount();
     localStorage.setItem("data", JSON.stringify(basket));
   };
+
+  /**
+ * ! Used to calculate total amount of the selected Products
+ * ! with specific quantity
+ * ? When basket is blank, it will show nothing
+ */
+
+let TotalAmount = () => {
+  if (basket.length !== 0) {
+    let amount = basket
+      .map((x) => {
+        let { id, item } = x;
+        let filterData = shopItemsData.find((x) => x.id === id);
+        return filterData.price * item;
+      })
+      .reduce((x, y) => x + y, 0);
+
+    return (label.innerHTML = `
+    <h2>Total Bill : $ ${amount}</h2>
+    <button class="checkout">Checkout</button>
+    <button onclick="clearCart()" class="removeAll">Clear Cart</button>
+    `);
+  } else return;
+};
+
+TotalAmount();
+
+/**
+ * ! Used to clear cart, and remove everything from local storage
+ */
+
+let clearCart = () => {
+  basket = [];
+  generateCartItems();
+  calculation();
+  localStorage.setItem("data", JSON.stringify(basket));
+};
