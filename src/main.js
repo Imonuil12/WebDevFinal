@@ -42,3 +42,25 @@ let basket = JSON.parse(localStorage.getItem("data")) || [];
   };
   
   generateShop();
+
+  /**
+ * ! used to increase the selected product item quantity by 1
+ */
+
+let increment = (id) => {
+  let selectedItem = id;
+  let search = basket.find((x) => x.id === selectedItem.id);
+
+  if (search === undefined) {
+    basket.push({
+      id: selectedItem.id,
+      item: 1,
+    });
+  } else {
+    search.item += 1;
+  }
+
+  console.log(basket);
+  update(selectedItem.id);
+  localStorage.setItem("data", JSON.stringify(basket));
+};
