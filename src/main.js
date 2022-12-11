@@ -84,3 +84,24 @@ let decrement = (id) => {
   console.log(basket);
   localStorage.setItem("data", JSON.stringify(basket));
 };
+
+/**
+ * ! To update the digits of picked items on each item card
+ */
+
+let update = (id) => {
+  let search = basket.find((x) => x.id === id);
+  document.getElementById(id).innerHTML = search.item;
+  calculation();
+};
+
+/**
+ * ! To calculate total amount of selected Items
+ */
+
+let calculation = () => {
+  let cartIcon = document.getElementById("cartAmount");
+  cartIcon.innerHTML = basket.map((x) => x.item).reduce((x, y) => x + y, 0);
+};
+
+calculation();
